@@ -23,7 +23,7 @@ def Checking():
 	try:
 		Url = target + "syscmd.htm"
 		response = requests.get(url = Url,headers = headers,verify = False,timeout = 10)
-		if(response.status_code == 200):
+		if(response.status_code == 200 and 'System Command' in response.text):
 			print("[+] Target is vuln")
 			return True
 		else:
